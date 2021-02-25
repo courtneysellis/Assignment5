@@ -1,4 +1,5 @@
 ﻿using Assignment5.Models;
+using Assignment5.Models.View_Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -15,15 +16,32 @@ namespace Assignment5.Controllers
 
         private IBookstoreRepository _repository;
 
+        int PageSize = 5;
+
         public HomeController(ILogger<HomeController> logger, IBookstoreRepository repository)
         {
             _logger = logger;
             _repository = repository;
         }
 
-        public IActionResult Index()
+        public IActionResult Index(int page = 1)
         {
-            return View(_repository.Books);
+            return View(new BookListViewModel
+            {
+                Books = _repository.Books.
+                            OrderBy(p => p.BookId).
+                            Skip((page - 1) * PageSize).
+                            Take(PageSize)
+
+                ,
+
+                PagingInfo = new PagingInfo
+                {
+                    CurrentPage = page,
+                    ItemsPerPage = PageSize,
+                    TotalNumItems = _repository.Books.Count()
+                }
+            });
         }
 
         public IActionResult Privacy()

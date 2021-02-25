@@ -33,7 +33,8 @@ namespace Assignment5.Models
                         Classification = "Fiction",
                         Category = "Classic",
                         Publisher = "Signet",
-                        Price = 9.95
+                        Price = 9.95,
+                        NumPages = 1488
                     },
 
                     new Book
@@ -45,7 +46,8 @@ namespace Assignment5.Models
                         Classification = "Non-Fiction",
                         Category = "Biography",
                         Publisher = "Simon & Schuster",
-                        Price = 14.58
+                        Price = 14.58,
+                        NumPages = 944
                     },
 
                     new Book
@@ -57,7 +59,8 @@ namespace Assignment5.Models
                         Classification = "Non-Fiction",
                         Category = "Biography",
                         Publisher = "Bantam",
-                        Price = 21.54
+                        Price = 21.54,
+                        NumPages = 832
                     },
 
                     new Book
@@ -69,7 +72,8 @@ namespace Assignment5.Models
                         Classification = "Non-Fiction",
                         Category = "Biography",
                         Publisher = "Random House",
-                        Price = 11.61
+                        Price = 11.61,
+                        NumPages = 864
                     },
 
                     new Book
@@ -81,7 +85,8 @@ namespace Assignment5.Models
                         Classification = "Non-Fiction",
                         Category = "Historical",
                         Publisher = "Random House",
-                        Price = 13.33
+                        Price = 13.33,
+                        NumPages = 528
                     },
 
                     new Book
@@ -93,7 +98,8 @@ namespace Assignment5.Models
                         Classification = "Fiction",
                         Category = "Historical Fiction",
                         Publisher = "Vintage",
-                        Price = 15.95
+                        Price = 15.95,
+                        NumPages = 288
                     },
 
                     new Book
@@ -105,7 +111,8 @@ namespace Assignment5.Models
                         Classification = "Non-Fiction",
                         Category = "Self-Help",
                         Publisher = "Grand Central Publishing",
-                        Price = 14.99
+                        Price = 14.99,
+                        NumPages = 304
                     },
 
                     new Book
@@ -117,7 +124,8 @@ namespace Assignment5.Models
                         Classification = "Non-Fiction",
                         Category = "Self-Help",
                         Publisher = "Grand Central Publishing",
-                        Price = 21.66
+                        Price = 21.66,
+                        NumPages = 240
                     },
 
                     new Book
@@ -129,19 +137,60 @@ namespace Assignment5.Models
                         Classification = "Non-Fiction",
                         Category = "Business",
                         Publisher = "Portfolio",
-                        Price = 29.16
+                        Price = 29.16,
+                        NumPages = 400
                     },
 
                     new Book
                     {
                         ISBN = "978-0553393613",
-                        Title = "Sycamore  Row",
+                        Title = "Sycamore Row",
                         AuthorFirstName = "John",
                         AuthorLastName = "Grisham",
                         Classification = "Fiction",
                         Category = "Thrillers",
                         Publisher = "Bantam",
-                        Price = 15.03
+                        Price = 15.03,
+                        NumPages = 642
+                    },
+
+                    new Book
+                    {
+                        ISBN = "978-1101885260",
+                        Title = "Bloodline",
+                        AuthorFirstName = "Claudia",
+                        AuthorLastName = "Gray",
+                        Classification = "Fiction",
+                        Category = "Sci-Fi",
+                        Publisher = "Del Rey Books",
+                        Price = 9.99,
+                        NumPages = 432
+                    },
+
+                    new Book
+                    {
+                        ISBN = "978-1484780787",
+                        Title = "Leia, Princess of Alderaan",
+                        AuthorFirstName = "Claudia",
+                        AuthorLastName = "Gray",
+                        Classification = "Fiction",
+                        Category = "Sci-Fi",
+                        Publisher = "Del Rey Books",
+                        Price = 10.90,
+                        NumPages = 416
+                    },
+
+                    new Book
+                    {
+                        ISBN = "978-0786838653",
+                        Title = "The Lightning Thief",
+                        AuthorFirstName = "Rick",
+                        AuthorLastName = "Riordan",
+                        Classification = "Fiction",
+                        Category = "Fantasy",
+                        Publisher = "Puffin Books",
+                        Price = 11.89,
+                        NumPages = 416
                     }
 
                 );
