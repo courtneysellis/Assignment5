@@ -59,12 +59,27 @@ namespace Assignment5
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllerRoute(       //Custom URLs
-                    "pagination",
-                    "P{page}",
+                endpoints.MapControllerRoute(        //URL for category filtering and page num
+                    "catpage",
+                    "{category}/{page:int}",
                     new { Controller = "Home", action = "Index" });
 
-                endpoints.MapDefaultControllerRoute();
+                endpoints.MapControllerRoute(       //URL for just page
+                    "page",
+                    "{page:int}",
+                    new { Controller = "Home", action = "Index" });
+
+                endpoints.MapControllerRoute(      //URL for just category
+                    "category",
+                    "{category}",
+                    new { Controller = "Home", action = "Index", page = 1 });
+
+                endpoints.MapControllerRoute(       //Custom URLs for Project pages
+                    "pagination",
+                    "Projects/{page}",
+                    new { Controller = "Home", action = "Index" });
+
+                endpoints.MapDefaultControllerRoute();  //Default endpoint
             });
 
             //Make sure there is data

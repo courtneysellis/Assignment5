@@ -1,0 +1,18 @@
+﻿@*A partial view to see specific books that can be referred to in main views (like Index.cshtml)*@
+
+@model Book
+
+<div class="card card-outline-primary m-1 p-1">
+    <div class="bg-faded p-1">
+        <h4>@Model.Title</h4>
+        <span class="badge badge-pill badge-primary float-right text-center">
+            <p>$@Model.Price</p>
+        </span>
+        <p>By @Model.AuthorFirstName @Model.AuthorLastName</p>
+        <p>Publisher: @Model.Publisher</p>
+        <p>Classification: @Model.Classification</p>
+        <p>Category: @Model.Category</p>
+        <p>Number of Pages: @Model.NumPages</p>
+        <p>ISBN: @Model.ISBN</p>
+    </div>
+</div>

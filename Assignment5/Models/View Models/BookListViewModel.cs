@@ -10,5 +10,6 @@ namespace Assignment5.Models.View_Models
         //Holds the data we need for each specific view that uses Book info
             public IEnumerable<Book> Books{ get; set; }
             public PagingInfo PagingInfo { get; set; }
+            public string CurrentCategory { get; set; }
     }
 }
