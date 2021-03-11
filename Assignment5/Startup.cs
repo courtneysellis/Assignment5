@@ -1,6 +1,7 @@
 using Assignment5.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -30,11 +31,18 @@ namespace Assignment5
             //Add the connection string to the database
             services.AddDbContext<BookstoreDbContext>(options =>
             {
-                options.UseSqlServer(Configuration["ConnectionStrings:BookstoreConnection"]);
+                options.UseSqlite(Configuration["ConnectionStrings:BookstoreConnection"]);
             });
 
             //Each session gets its own information that it requests. Implemenated by EF
             services.AddScoped<IBookstoreRepository, EFBookstoreRepository>();
+            //Allow for Razor Pages to be used
+            services.AddRazorPages();
+            //Allows for memory to be saved during a session (like keeping something added to a cart)
+            services.AddDistributedMemoryCache();
+            services.AddSession();
+            services.AddScoped<Cart>(sp => SessionCart.GetCart(sp));
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -53,6 +61,8 @@ namespace Assignment5
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
+            app.UseSession();           //Allow sessions
+
             app.UseRouting();
 
             app.UseAuthorization();
@@ -61,25 +71,27 @@ namespace Assignment5
             {
                 endpoints.MapControllerRoute(        //URL for category filtering and page num
                     "catpage",
-                    "{category}/{page:int}",
+                    "{category}/{pageNum:int}",
                     new { Controller = "Home", action = "Index" });
 
                 endpoints.MapControllerRoute(       //URL for just page
                     "page",
-                    "{page:int}",
+                    "{pageNum:int}",
                     new { Controller = "Home", action = "Index" });
 
                 endpoints.MapControllerRoute(      //URL for just category
                     "category",
                     "{category}",
-                    new { Controller = "Home", action = "Index", page = 1 });
+                    new { Controller = "Home", action = "Index", pageNum = 1 });
 
                 endpoints.MapControllerRoute(       //Custom URLs for Project pages
                     "pagination",
-                    "Projects/{page}",
+                    "Projects/{pageNum}",
                     new { Controller = "Home", action = "Index" });
 
                 endpoints.MapDefaultControllerRoute();  //Default endpoint
+
+                endpoints.MapRazorPages();
             });
 
             //Make sure there is data

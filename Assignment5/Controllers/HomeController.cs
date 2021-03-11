@@ -24,20 +24,20 @@ namespace Assignment5.Controllers
             _repository = repository;
         }
 
-        public IActionResult Index(string category, string classification, int page = 1)
+        public IActionResult Index(string category, string classification, int pageNum = 1)
         {
             return View(new BookListViewModel
             {
                 Books = _repository.Books.
                             Where(p => category == null || p.Category == category).  //If category is null, then there isn't a category to filter by. But if there is a category, then we only show those in the category
                             OrderBy(p => p.BookId).
-                            Skip((page - 1) * PageSize).
+                            Skip((pageNum - 1) * PageSize).
                             Take(PageSize)
                 ,
 
                 PagingInfo = new PagingInfo
                 {
-                    CurrentPage = page,
+                    CurrentPage = pageNum,
                     ItemsPerPage = PageSize,
                     TotalNumItems  = category == null ? _repository.Books.Count() : _repository.Books.Where(x => x.Category == category).Count()
                     //To have the right number of pages in the pagination
